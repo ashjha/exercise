@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="exerciseApp">
+
+<head>
+  <title>Exersice</title>
+  <link rel='stylesheet' href='/css/bootstrap.min.css' />
+  <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body class="container"  ng-controller="StudentController as student" ng-init="student.getStudents()">
+
+  <h2>Students Management:-</h2>
+  <div class="addBtn"><button type="button" ng-click="student.toggleAddNewStudent()" class="btn btn-success ">Add New Student</button></div>
+
+  <div class="listing" ng-if="student.addNew">
+    <form name="newStudent" ng-submit="student.AddNewStudent()">
+      <div class="form-group">
+        <label for="email">Name</label>
+        <input type="text" ng-model="student.create.name" class="form-control" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Age</label>
+        <input type="number" ng-model="student.create.age" class="form-control" id="pwd" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Address:</label>
+        <hr>
+      </div>
+
+      <div class="form-group">
+        <label for="hn">Home Number:</label>
+        <input type="text" ng-model="student.create.address.hno" class="form-control" id="hn" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">City:</label>
+        <input type="text" ng-model="student.create.address.city" class="form-control" id="pwd" required>
+      </div>
+      <div class="form-group">
+        <label for="email">State:</label>
+        <input type="text" ng-model="student.create.address.state" class="form-control" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="conty">Country:</label>
+        <input type="text" ng-model="student.create.address.country" class="form-control" id="conty" required>
+      </div>
+
+      <button type="submit" ng-disabled="student.allBtnDisable" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+
+  <div class="listing adressonly" ng-if="student.updateAddress">
+    <form name="newAddress" ng-submit="student.addNewAddress()">
+     <div class="form-group">
+        <label for="hn">Home Number:</label>
+        <input type="text" ng-model="student.newAddress.address.hno" class="form-control" id="hn" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">City:</label>
+        <input type="text" ng-model="student.newAddress.address.city" class="form-control" id="pwd" required>
+      </div>
+      <div class="form-group">
+        <label for="email">State:</label>
+        <input type="text" ng-model="student.newAddress.address.state" class="form-control" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="conty">Country:</label>
+        <input type="text" ng-model="student.newAddress.address.country" class="form-control" id="conty" required>
+      </div>
+   <button type="submit" ng-disabled="student.allBtnDisable" class="btn btn-default">Submit</button>
+   <button type="button" class="btn btn-danger" ng-click="student.hideUpdateAddress()">Cancle</button>
+    </form>
+  </div>
+
+  <div class="listing">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="st in student.students">
+          <td>{{st.name}}</td>
+          <td>{{st.age}}</td>
+          <td>{{student.getAddressOnly(st.address)}}</td>
+          <td><button type="button" ng-click="student.showUpdateAddress(st._id)" class="btn btn-warning btn-sm">Update Address</button></td>
+        </tr>
+        <tr ng-if="student.students.length === 0"><td colspan="4">NO STUDENTS</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+<script src="/js/angular.min.js"></script>
+<script src="/js/studentController.js"></script>
+
+</html>

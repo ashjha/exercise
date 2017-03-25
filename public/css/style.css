@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.listing{
+  margin:2%;
+  border: 2px solid lightgrey;
+  padding: 30px;
+}
+
+.addBtn{ 
+  width:100%;
+  margin-bottom: 10%;
+}
+
+.addBtn button{
+    position: absolute;
+    right: 0;
+}
